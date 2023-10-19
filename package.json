@@ -1,0 +1,19 @@
+{
+  "name": "python-crud-v2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tailwindcss -i ./app/static/src/input.css -o ./app/static/dist/output.css --watch",
+    "prod": "tailwindcss -i ./app/static/src/input.css -o ./app/static/dist/output.css"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "tailwindcss": "3.3.3"
+  },
+  "dependencies": {
+    "@fontsource/montserrat": "5.0.14"
+  }
+}
