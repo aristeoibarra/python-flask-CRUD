@@ -1,0 +1,97 @@
+{% extends 'layouts/auth_base.html' %} {% block title %}Sign up{%endblock%} {%
+block content %}
+<div
+  class="grid grid-cols-1 justify-center items-center h-screen lg:grid-cols-2"
+>
+  <div class="hidden lg:block">
+    <img src="static/img/register.svg" alt="" class="w-full h-screen" />
+  </div>
+  <div class="flex flex-col justify-center items-center">
+    <form
+      method="POST"
+      action="{{ url_for('user_controller.register') }}"
+      novalidate
+    >
+      {{ form.hidden_tag() }}
+
+      <h1 class="font-semibold mb-[23px] text-center text-lg">
+        Please Fill out form to Register!
+      </h1>
+
+      <div class="grid gap-[10px]">
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="name">Name:</label>
+          {{ form.name(class="w-[367px] h-[56px] bg-indigo-300 bg-opacity-0
+          rounded-2xl border border-indigo-500 px-4", placeholder="Name") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="lastname">Lastname:</label>
+          {{ form.lastname(class="w-[367px] h-[56px] bg-indigo-300 bg-opacity-0
+          rounded-2xl border border-indigo-500 px-4", placeholder="Lastname") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.lastname.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="email">Email:</label>
+          {{ form.email(class="w-[367px] h-[56px] bg-indigo-300 bg-opacity-0
+          rounded-2xl border border-indigo-500 px-4", placeholder="Email") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.email.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="password">Password:</label>
+          {{ form.password(class="w-[367px] h-[56px] bg-indigo-300 bg-opacity-0
+          rounded-2xl border border-indigo-500 px-4", placeholder="Password") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.email.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="confirm_password"
+            >Confirm Password:</label
+          >
+          {{ form.confirm_password(class="w-[367px] h-[56px] bg-indigo-300
+          bg-opacity-0 rounded-2xl border border-indigo-500 px-4",
+          placeholder="Confirm Password") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.confirm_password.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <button
+        type="submit"
+        class="mt-[42px] w-full h-[43px] bg-indigo-500 rounded-[50px] text-white"
+      >
+        Sign up
+      </button>
+
+      <p class="mt-[54px] text-center font-medium">
+        Already have an account?
+        <a href="{{ url_for('user_controller.login') }}" class="text-indigo-500"
+          >Login</a
+        >
+      </p>
+    </form>
+  </div>
+</div>
+{% endblock %}
