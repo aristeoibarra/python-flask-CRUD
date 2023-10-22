@@ -1,0 +1,80 @@
+{% extends 'layouts/dashboard_base.html' %} {% block title %}product{%endblock%}
+{% block content %}
+<div class="w-full bg-white px-[30px] py-[26px] h-full rounded-[12px]">
+    <div class="flex justify-between items-center mb-[40px]">
+        <nav class="flex" aria-label="Breadcrumb">
+            <ol class="inline-flex items-center space-x-1 md:space-x-3">
+                <li>
+                    <div class="flex items-center">
+                        <a href="{{ url_for('product_controller.index') }}"
+                            class="text-sm font-medium text-gray-700 hover:text-haiti-500 md:ml-2">
+                            Products
+                        </a>
+                    </div>
+                </li>
+                <li aria-current="page">
+                    <div class="flex items-center">
+                        <svg class="w-3 h-3 text-gray-400 mx-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                            fill="none" viewBox="0 0 6 10">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="m1 9 4-4-4-4" />
+                        </svg>
+                        <span class="ml-1 text-sm font-medium text-gray-500 capitalize">
+                            {{ product.product_name }}
+                        </span>
+                    </div>
+                </li>
+            </ol>
+        </nav>
+    </div>
+    <div class="relative overflow-x-auto">
+        <form method="POST" action="{{ url_for('product_controller.destroy', id=product.product_id) }}" novalidate>
+            {{ form.hidden_tag() }}
+
+            <div class="grid gap-4">
+                <div class="grid">
+                    <h3 class="text-black text-lg font-semibold
+                        ">Name:</h3>
+
+                    <p class="text-black text-base">
+                        {{ product.product_name }}
+                    </p>
+                </div>
+
+
+                <div class="grid">
+                    <h3 class="text-black text-lg font-semibold
+                        ">Description:</h3>
+
+                    <p class="text-black text-base">
+                        {{ product.product_description }}
+                    </p>
+                </div>
+
+
+                <div class="grid">
+                    <h3 class="text-black text-lg font-semibold
+                        ">Price:</h3>
+
+                    <p class="text-black text-base">
+                        ${{'%0.2f'|format(product.product_price | float)}}
+                    </p>
+                </div>
+
+                <div class="grid">
+                    <h3 class="text-black text-lg font-semibold
+                        ">Stock:</h3>
+
+                    <p class="text-black text-base">
+                        {{ product.product_stock }}
+                    </p>
+                </div>
+            </div>
+
+            <input type="submit" value="Delete"
+                class="bg-red-500 px-4 py-2 rounded-md text-white mt-[20px] hover:bg-red-600" />
+        </form>
+    </div>
+</div>
+</div>
+{% endblock %}

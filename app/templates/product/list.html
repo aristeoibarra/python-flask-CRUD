@@ -1,0 +1,62 @@
+{% extends 'layouts/dashboard_base.html' %} {% block title %}product{%endblock%}
+{% block content %}
+
+<div class="w-full bg-white px-[30px] py-[26px] h-full rounded-[12px]">
+  <div class="flex justify-between items-center mb-[40px]">
+    <h1 class="text-lg font-semibold">Products</h1>
+
+    <a
+      href="{{ url_for('product_controller.store') }}"
+      class="bg-haiti-500 px-4 py-2 rounded-md text-white"
+    >
+      Add Product
+    </a>
+  </div>
+  <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left text-gray-500">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+        <tr>
+          <th scope="col" class="px-6 py-3">Name</th>
+          <th scope="col" class="px-6 py-3">Description</th>
+          <th scope="col" class="px-6 py-3">Price</th>
+          <th scope="col" class="px-6 py-3">Stock</th>
+          <th scope="col" class="w-32 px-8 py-3">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for product in products %}
+        <tr class="bg-white border-b">
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ product.product_name }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ product.product_description }}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            ${{'%0.2f'|format(product.product_price | float)}}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            {{ product.product_stock }}
+          </td>
+          <td class="w-32 px-6 py-4 whitespace-nowrap">
+            <a
+              href="{{ url_for('product_controller.show', id=product.product_id) }}"
+              class="font-medium bg-haiti-500 px-4 py-2 rounded-md text-white mr-1"
+            >
+              Show
+            </a>
+            <a
+              href="{{ url_for('product_controller.update', id=product.product_id) }}"
+              class="font-medium bg-haiti-500 px-4 py-2 rounded-md text-white"
+            >
+              Edit
+            </a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+
+{% endblock %}
