@@ -1,0 +1,111 @@
+{% extends 'layouts/dashboard_base.html' %} {% block title %}product{%endblock%}
+{% block content %}
+<div class="w-full bg-white px-[30px] py-[26px] h-full rounded-[12px]">
+  <div class="flex justify-between items-center mb-[40px]">
+    <nav class="flex" aria-label="Breadcrumb">
+      <ol class="inline-flex items-center space-x-1 md:space-x-3">
+        <li>
+          <div class="flex items-center">
+            <a
+              href="{{ url_for('product_controller.index') }}"
+              class="text-sm font-medium text-gray-700 hover:text-haiti-500 md:ml-2"
+            >
+              Products
+            </a>
+          </div>
+        </li>
+        <li aria-current="page">
+          <div class="flex items-center">
+            <svg
+              class="w-3 h-3 text-gray-400 mx-1"
+              aria-hidden="true"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 6 10"
+            >
+              <path
+                stroke="currentColor"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="m1 9 4-4-4-4"
+              />
+            </svg>
+            <span class="ml-1 text-sm font-medium text-gray-500 capitalize">
+              {{ product.product_name }}
+            </span>
+          </div>
+        </li>
+      </ol>
+    </nav>
+  </div>
+  <div class="relative overflow-x-auto">
+    <form
+      method="POST"
+      action="{{ url_for('product_controller.update', id=product.product_id) }}"
+      novalidate
+    >
+      {{ form.hidden_tag() }}
+
+      <div class="grid gap-[20px]">
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="product_name">Name:</label>
+          {{ form.product_name(value=form.product_name.data , class="w-[367px]
+          h-[56px] bg-indigo-300 bg-opacity-0 rounded-2xl border
+          border-indigo-500 px-4", placeholder="Name") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.product_name.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="product_description"
+            >Description:</label
+          >
+          {{
+          form.product_description(value=product.product_description,class="w-[367px]
+          h-[56px] bg-indigo-300 bg-opacity-0 rounded-2xl border
+          border-indigo-500 px-4", placeholder="Description") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.product_description.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="product_stock">Stock:</label>
+          {{ form.product_stock(value=product.product_stock,class="w-[367px]
+          h-[56px] bg-indigo-300 bg-opacity-0 rounded-2xl border
+          border-indigo-500 px-4", placeholder="Stock") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.product_stock.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+
+        <div class="grid gap-[10px]">
+          <label class="text-black" for="product_price">Price:</label>
+          {{ form.product_price(value=product.product_price,class="w-[367px]
+          h-[56px] bg-indigo-300 bg-opacity-0 rounded-2xl border
+          border-indigo-500 px-4", placeholder="Price") }}
+          <ul class="text-red-500 text-xs italic">
+            {% for error in form.product_price.errors %}
+            <li>{{ error }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <input
+        type="submit"
+        value="Update"
+        class="bg-haiti-500 px-4 py-2 rounded-md text-white mt-[20px] hover:bg-haiti-600"
+      />
+    </form>
+  </div>
+</div>
+{% endblock %}
