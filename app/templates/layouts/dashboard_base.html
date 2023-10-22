@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <link href="../static/dist/output.css" rel="stylesheet" />
+    <title>{% block title %}Mi Aplicación{% endblock %}</title>
+  </head>
+
+  <body class="bg-haiti-50">
+    <main class="w-screen h-full">
+      <nav
+        class="fixed top-0 z-50 w-full bg-white border-b border-gray-200 flex justify-end items-center h-[70px]"
+      >
+        <div class="flex gap-4 items-center mr-[30px]">
+          <div class="grid gap-1">
+            <span class="text-gray-700 text-sm font-medium capitalize">
+              {{ current_user.user_name }} {{ current_user.user_lastname }}
+            </span>
+            <span class="text-gray-500 text-xs font-light">
+              {{ current_user.user_email }}
+            </span>
+          </div>
+        </div>
+      </nav>
+      <aside
+        id="logo-sidebar"
+        class="fixed top-0 left-0 w-64 transition-transform -translate-x-full bg-haiti-500 border-r sm:translate-x-0 rounded-tr-[50px] rounded-br-[50px] z-50 h-full"
+        aria-label="Sidebar"
+      >
+        <div class="flex flex-col h-full">
+          <div class="flex items-center justify-center mt-[51px] mb-[50px]">
+            <img src="../static/img/logo.svg" alt="Logo" />
+          </div>
+
+          <div class="flex flex-col justify-between h-full">
+            <div class="pb-4 overflow-y-auto px-7 grid gap-3">
+              <ul class="font-medium w-full">
+                <li>
+                  <a
+                    href="{{ url_for('home_controller.home') }}"
+                    class="flex gap-4 items-center w-full my-[14px] mx-[8px]"
+                  >
+                    <img
+                      src="../static/img/home.svg"
+                      alt="Home"
+                      class="w-[30px] h-[30px]"
+                    />
+                    <span
+                      <span
+                      class="text-white {% if key == 'home' %}font-bold{% else %}font-light{% endif %}"
+                      >Home</span
+                    >
+                  </a>
+                </li>
+              </ul>
+
+              <ul class="font-medium w-full">
+                <li>
+                  <a
+                    href="{{ url_for('product_controller.index') }}"
+                    class="flex gap-4 items-center w-full my-[14px] mx-[8px]"
+                  >
+                    <img
+                      src="../static/img/product.svg"
+                      alt="Product"
+                      class="w-[30px] h-[30px]"
+                    />
+                    <span
+                      class="text-white {% if key == 'product' %}font-bold{% else %}font-light{% endif %}"
+                    >
+                      Products
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="pb-4 overflow-y-auto px-7 grid gap-3">
+              <ul class="font-medium w-full">
+                <li>
+                  <a
+                    href="{{ url_for('user_controller.logout') }}"
+                    class="flex gap-4 items-center w-full my-[14px] mx-[8px]"
+                  >
+                    <img
+                      src="../static/img/logout.svg"
+                      alt="Logout"
+                      class="w-[30px] h-[30px]"
+                    />
+                    <span
+                      class="text-white {% if key == 'logout' %}font-bold{% else %}font-light{% endif %}"
+                    >
+                      Logout
+                    </span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <div class="p-4 sm:ml-64 h-full">
+        <div class="p-4 mt-14" style="height: 90vh">
+          {% block content %}{% endblock %}
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
