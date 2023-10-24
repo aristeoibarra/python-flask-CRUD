@@ -34,6 +34,12 @@ To set up this project, follow these steps:
 3) Customize the environment variables in the newly created `.env` file as needed.
 4) Build and run the Docker containers using `docker-compose up -d`.
 
+```bash
+docker exec -it [container_name_web] /bin/sh
+npm install
+flask db upgrade
+npm run dev
+```
 
 ## Screenshots
 
