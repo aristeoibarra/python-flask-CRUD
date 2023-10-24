@@ -54,6 +54,7 @@ def register():
 
         if user:
             flash("Email address already exists")
+            form.email.errors.append("Email address already exists")
         else:
             new_user = User(
                 user_name=name,
